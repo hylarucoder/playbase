@@ -1,0 +1,17 @@
+# Local development dependencies go here
+-r base.txt
+coverage
+django-coverage-plugin
+Sphinx
+sphinx_rtd_theme
+django-extensions
+django-debug-toolbar
+pytest
+pytest-django
+pytest-sugar
+pytest-cov
+pytest-html
+
+flake8
+autoflake
+hy

@@ -1,0 +1,6 @@
+[all:vars]
+env=deployment
+
+[webapps]
+192.168.0.103 nginx_use_letsencrypt=false
+
