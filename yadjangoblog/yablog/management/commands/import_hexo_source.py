@@ -11,6 +11,8 @@ from django.utils import timezone
 from yablog.models import BlogPost, BlogCategory, BlogTag
 from collections import Counter
 
+from yaaccounts.models import Account
+
 STATUS_NEED_ADD = 1
 STATUS_NEED_UPDATE = 2
 STATUS_NEED_DELETE = 3
@@ -113,6 +115,20 @@ class Command(BaseCommand):
             "更新文章": len(need_update_titles),
         })
 
+        self.init_user()
+
+    def init_user(self):
+        c = Account.objects.all().count()
+        if c == 0:
+            u = Account()
+            u.username = "admin"
+            u.email = "admin"
+            u.telephone = "18117454353"
+            u.set_password("admin123123")
+            u.is_staff = True
+            u.is_superuser = True
+            u.save()
+
     def process_blogpost(self, file):
         with open(file, "rt") as f:
             file_content = f.read()
@@ -143,8 +159,6 @@ class Command(BaseCommand):
             except Exception as e:
                 blogpost = BlogPost()
                 blogpost.title = article_info["title"]
-                import traceback
-                traceback.print_exc()
                 pass
 
             blogpost.content = article_info["content"]

@@ -8,8 +8,8 @@ services:
   postgres:
     image: db-postgres:0.1
     volumes:
-      - ~/Codes/DockerVolume/YaDjangoBlog/postgresql/data:/var/lib/postgresql/data
-      - ~/Codes/DockerVolume/YaDjangoBlog/backups:/backups
+      - ~/Codes/YaBlog/DockerVolume/YaDjangoBlog/PostgreSQL/data:/var/lib/postgresql/data
+      - ~/Codes/YaBlog/DockerVolume/YaDjangoBlog/Backups:/backups
     env_file: .env.dev
     ports:
       - "5432:35432"
@@ -29,7 +29,7 @@ services:
     ports:
       - '6379:6379'
     volumes:
-      - ~/Codes/DockerVolume/YaDjangoBlog/redis/data:/data
+      - ~/Codes/YaBlog/DockerVolume/YaDjangoBlog/Redis/data:/data
     env_file: .env.dev
 
   elasticsearch:

@@ -58,6 +58,9 @@ django-just-up: ## build and up
 django-manager: ## Enter python manage.py
 	$(DJANGO_DOCKER_RUN) python manage.py
 
+django-import-articles: ## Enter python manage.py
+	$(DJANGO_DOCKER_RUN) python manage.py import_hexo_source
+
 django-console: ## Enter Django Console
 	$(DJANGO_DOCKER_RUN) python manage.py shell
 
