@@ -139,7 +139,7 @@ build-elasticsearch: ## > base elasticsearch
 force-build-elasticsearch: ## > base elasticsearch
 	docker build -t 'base-elasticsearch:0.1' -f 'compose/elasticsearch/Dockerfile-dev' . --no-cache
 
-build-all: build-postgres build-ubuntu build-django build-elasticsearch
+build-all: build-postgres build-ubuntu build-django build-elasticsearch ## > build 所需所有镜像
 
 sep--sep-f: ## ========== 文件清理相关 ==============
 	echo "## ========== 本行只是优雅的分割线  ==============="
