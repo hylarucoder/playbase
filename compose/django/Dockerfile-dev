@@ -1,4 +1,4 @@
-FROM base-ubuntu:0.1
+FROM base-ubuntu:0.2
 
 # Sane defaults for pip
 ENV PIP_NO_CACHE_DIR off
@@ -10,7 +10,7 @@ RUN ln -s /usr/bin/pip3 /usr/bin/pip && ln -s /usr/bin/python3 /usr/bin/python
 COPY ./requirements /requirements
 
 # --no-cache-dir
-RUN pip install -r /requirements/local.txt -i https://pypi.doubanio.com/simple
+RUN pipenv install -r /requirements/local.txt 
 
 COPY ./compose/django/celery/worker/start.sh /start-celeryworker.sh
 RUN sed -i 's/\r//' /start-celeryworker.sh
