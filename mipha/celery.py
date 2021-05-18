@@ -9,12 +9,16 @@ from mipha.models import User
 
 if not settings.configured:
     os.environ.setdefault(
-        "DJANGO_SETTINGS_MODULE", "mipha.settings.local"
+        "DJANGO_SETTINGS_MODULE", "mipha.settings"
     )  # pragma: no cover
 
 
 def setup_celery():
     celery.conf.timezone = "Asian/Shanghai"
+    celery.conf.broker_url = "redis://:{password}@redis:{port}/1"
+    # celery.settings.beat = {}
+
+    CELERYBEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
 
 
 setup_celery()

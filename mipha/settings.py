@@ -1,13 +1,16 @@
+import datetime
 import os
-import pathlib
 
-ROOT_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
-ASSETS_DIR = "{}/static".format(str(ROOT_DIR))
-APPS_DIR = os.path.join(str(ROOT_DIR), "mipha")
+from mipha.settings_plus import get_settings
 
-SECRET_KEY = "changethisbeforedeployproduction"
+settings = get_settings()
 
-DEBUG = True
+ROOT_PATH = settings.ROOT_PATH
+APPS_DIR = os.path.join(str(ROOT_PATH), "mipha")
+
+SECRET_KEY = settings.SECRET_KEY
+
+DEBUG = settings.DEBUG
 
 ALLOWED_HOSTS = ["*"]
 
@@ -52,14 +55,13 @@ ADMINS = (("""twocucao""", "twocucao@gmail.com"),)
 
 MANAGERS = ADMINS
 
-TIME_ZONE = "Asia/Shanghai"
+TIME_ZONE = settings.TIME_ZONE
 
 USE_I18N = False
 USE_L10N = True
 USE_TZ = False
 
 LANGUAGE_CODE = "zh-CN"
-SITE_ID = 1
 
 TEMPLATES = [
     {
@@ -84,7 +86,7 @@ TEMPLATES = [
     },
 ]
 
-STATIC_ROOT = os.getenv("STATIC_ROOT", os.path.join(ASSETS_DIR, "static"))
+STATIC_ROOT = os.path.join(ROOT_PATH, "../static")
 STATIC_URL = "/static/"
 
 STATICFILES_DIRS = (os.path.join(APPS_DIR, "static"),)
@@ -94,10 +96,10 @@ STATICFILES_FINDERS = (
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
 )
 
-MEDIA_ROOT = os.getenv("MEDIA_ROOT", os.path.join(ASSETS_DIR, "media"))
+MEDIA_ROOT = (f"{ROOT_PATH}/media",)
 MEDIA_URL = "/media/"
 
-ROOT_URLCONF = "mipha.urls"
+ROOT_URLCONF = "mipha.apps.urls"
 
 WSGI_APPLICATION = "mipha.wsgi.application"
 
@@ -123,18 +125,6 @@ AUTHENTICATION_BACKENDS = (
 
 ADMIN_URL = "admin"
 
-REST_FRAMEWORK = {
-    "DEFAULT_PERMISSION_CLASSES": [
-        "rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly"
-    ],
-    "DEFAULT_AUTHENTICATION_CLASSES": (
-        "rest_framework_jwt.authentication.JSONWebTokenAuthentication",
-        "rest_framework.authentication.SessionAuthentication",
-        "rest_framework.authentication.BasicAuthentication",
-    ),
-    "DEFAULT_FILTER_BACKENDS": ("django_filters.rest_framework.DjangoFilterBackend",),
-}
-
 GRAPPELLI_ADMIN_TITLE = "Micheal Gardner的编程小屋"
 
 # GRAPPELLI_INDEX_DASHBOARD = "mipha.yaadmin.dashboard.CustomIndexDashboard"
@@ -145,3 +135,79 @@ INTERNAL_IPS = [
     "127.0.0.1",
     "10.0.2.2",
 ]
+
+REST_FRAMEWORK = {
+    "DEFAULT_RENDERER_CLASSES": ("rest_framework.renderers.JSONRenderer",),
+    "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_jwt.authentication.JSONWebTokenAuthentication",
+        "rest_framework.authentication.BasicAuthentication",
+    ),
+}
+
+# DEBUG
+# ------------------------------------------------------------------------------
+if DEBUG:
+    MIDDLEWARE += ["debug_toolbar.middleware.DebugToolbarMiddleware"]
+    INSTALLED_APPS += ("debug_toolbar",)
+    DEBUG_TOOLBAR_CONFIG = {
+        "DISABLE_PANELS": [
+            "debug_toolbar.panels.redirects.RedirectsPanel",
+        ],
+        "SHOW_TEMPLATE_CONTEXT": True,
+    }
+
+    INSTALLED_APPS += ("django_extensions",)
+
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": settings.REDIS_URI,
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        },
+    }
+}
+SESSION_ENGINE = "django.contrib.sessions.backends.cache"
+SESSION_CACHE_ALIAS = "default"
+
+import socket
+
+# tricks to have debug toolbar when developing with docker
+ip = socket.gethostbyname(socket.gethostname())
+INTERNAL_IPS += [ip[:-1] + "1"]
+
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "mipha",
+        "USER": "mipha",
+        "PASSWORD": "mipha123",
+        "HOST": "localhost",
+        "PORT": 5432
+    }
+}
+
+JWT_AUTH = {
+    "JWT_ENCODE_HANDLER": "rest_framework_jwt.utils.jwt_encode_handler",
+    "JWT_DECODE_HANDLER": "rest_framework_jwt.utils.jwt_decode_handler",
+    "JWT_PAYLOAD_HANDLER": "rest_framework_jwt.utils.jwt_payload_handler",
+    "JWT_PAYLOAD_GET_USER_ID_HANDLER": "rest_framework_jwt.utils.jwt_get_user_id_from_payload_handler",
+    "JWT_RESPONSE_PAYLOAD_HANDLER": "rest_framework_jwt.utils.jwt_response_payload_handler",
+    "JWT_SECRET_KEY": settings.SECRET_KEY,
+    "JWT_PUBLIC_KEY": None,
+    "JWT_PRIVATE_KEY": None,
+    "JWT_ALGORITHM": "HS256",
+    "JWT_VERIFY": True,
+    "JWT_VERIFY_EXPIRATION": True,
+    "JWT_LEEWAY": 0,
+    "JWT_EXPIRATION_DELTA": datetime.timedelta(seconds=300),
+    "JWT_AUDIENCE": None,
+    "JWT_ISSUER": None,
+    "JWT_ALLOW_REFRESH": True,
+    "JWT_REFRESH_EXPIRATION_DELTA": datetime.timedelta(days=7),
+    "JWT_AUTH_HEADER_PREFIX": "JWT",
+}
+
+# Guardian的副作用, 直接去掉 AnonymousUser
+ANONYMOUS_USER_NAME = None

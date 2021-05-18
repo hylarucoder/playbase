@@ -1,17 +1,12 @@
-import pprint
-
-from django.contrib.auth.models import User
-from django.core.management.base import BaseCommand
-from django.db.models import Q
-from django.conf import settings
 import os
-import yaml
-from django.utils import timezone
-
-from yablog.models import BlogPost, BlogCategory, BlogTag
+import pprint
 from collections import Counter
 
-from yaaccounts.models import Account
+import yaml
+from django.conf import settings
+from django.core.management.base import BaseCommand
+from django.db.models import Q
+from django.utils import timezone
 
 STATUS_NEED_ADD = 1
 STATUS_NEED_UPDATE = 2
@@ -33,7 +28,7 @@ class Command(BaseCommand):
         self.tags_counter = Counter()
 
     def handle(self, *args, **options):
-        hexo_path = settings.ROOT_DIR + "/hexo-posts"
+        hexo_path = settings.ROOT_PATH + "/hexo-posts"
         files = sorted(
             list(
                 filter(
