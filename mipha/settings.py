@@ -1,12 +1,12 @@
 import datetime
 import os
 
-from mipha.settings_plus import get_settings
+from mipha.pre_settings import get_settings
 
 settings = get_settings()
 
 ROOT_PATH = settings.ROOT_PATH
-APPS_DIR = os.path.join(str(ROOT_PATH), "mipha")
+MIPHA_DIR = os.path.join(ROOT_PATH, "mipha")
 
 SECRET_KEY = settings.SECRET_KEY
 
@@ -66,9 +66,6 @@ LANGUAGE_CODE = "zh-CN"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [
-            os.path.join(APPS_DIR, "templates"),
-        ],
         "APP_DIRS": True,
         "OPTIONS": {
             "debug": DEBUG,
@@ -89,7 +86,7 @@ TEMPLATES = [
 STATIC_ROOT = os.path.join(ROOT_PATH, "../static")
 STATIC_URL = "/static/"
 
-STATICFILES_DIRS = (os.path.join(APPS_DIR, "static"),)
+STATICFILES_DIRS = (os.path.join(MIPHA_DIR, "static"),)
 
 STATICFILES_FINDERS = (
     "django.contrib.staticfiles.finders.FileSystemFinder",

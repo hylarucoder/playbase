@@ -2,11 +2,10 @@ import os
 import pathlib
 from functools import lru_cache
 
+import django
 from pydantic import BaseSettings
 
-ROOT_PATH = pathlib.Path(__file__).parent.absolute()
-
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "mipha.settings")
+ROOT_PATH = str(pathlib.Path(__file__).parent.absolute())
 
 
 class Settings(BaseSettings):
@@ -20,3 +19,8 @@ class Settings(BaseSettings):
 @lru_cache()
 def get_settings() -> Settings:
     return Settings()
+
+
+def pre_setting():
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "mipha.settings")
+    django.setup()
