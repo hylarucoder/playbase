@@ -7,4 +7,4 @@ set -o xtrace
 
 sleep 3
 
-celery -A yadjangoblog.yataskapp flower
+celery -A mipha.yataskapp flower

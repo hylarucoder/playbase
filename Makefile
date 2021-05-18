@@ -22,38 +22,38 @@ for line in sys.stdin:
 endef
 export PRINT_HELP_PYSCRIPT
 BROWSER := python -c "$$BROWSER_PYSCRIPT"
-PG_DOCKER_RUN := docker exec -i -t yadjangoblog_postgres_1
-DJANGO_DOCKER_RUN := docker exec -i -t yadjangoblog_django_1
-DJANGO_DOCKER_PATH_RUN := docker exec -i -t yadjangoblog_django_1
+PG_DOCKER_RUN := docker exec -i -t mipha_postgres_1
+DJANGO_DOCKER_RUN := docker exec -i -t mipha_django_1
+DJANGO_DOCKER_PATH_RUN := docker exec -i -t mipha_django_1
 
 help:
 	@python -c "$$PRINT_HELP_PYSCRIPT" < $(MAKEFILE_LIST)
 
 sep--sep-a: ## ========== 开发时命令 ==============
 
-django-build-up: ## build and compose up
-	docker-compose -f dev.yml build && docker-compose -f dev.yml up
+docker-build: ## build and compose up
+	docker compose build && docker-compose up
 
-force_djnago_build-up: ## django / pg / es
-	docker-compose -f dev.yml build --no-cache  && docker-compose -f dev.yml up
+docker-build-no-cache: ## django / pg / es
+	docker compose build --no-cache  && docker-compose up
 
-django-before-up: ## some deamons
-	docker-compose -f dev.yml up -d redis postgres mailhog elasticsearch rabbitmq celeryflower
+before-up: ## some deamons
+	docker compose up -d redis postgres mailhog elasticsearch rabbitmq celeryflower
 
-django-runserver: ## runserver
-	docker-compose -f dev.yml up django
+start: ## runserver
+	docker compose up django
 
-django-celerybeat: ## celerybeat
-	docker-compose -f dev.yml up celerybeat
+beat: ## beat
+	docker compose up celerybeat
 
-django-celeryworker: ## celeryworker
-	docker-compose -f dev.yml up celeryworker
+worker: ## worker
+	docker compose up celeryworker
 
-django-celeryflower: ## celeryflower
-	docker-compose -f dev.yml up celeryflower
+flower: ## flower
+	docker compose up celeryflower
 
-django-just-up: ## build and up
-	docker-compose -f dev.yml up
+up: ## build and up
+	docker compose up
 
 django-manager: ## Enter python manage.py
 	$(DJANGO_DOCKER_RUN) python manage.py
@@ -68,34 +68,19 @@ shell: ## Enter Shell
 	$(DJANGO_DOCKER_RUN) /bin/bash
 
 dbshell: ## Enter psql as postgres
-	$(PG_DOCKER_RUN) su postgres -c "psql -U yadjangoblog"
+	$(PG_DOCKER_RUN) su postgres -c "psql -U mipha"
 
 sep--sep-b: ## ========== 测试与代码质量 ==============
 	echo "## ========== 本行只是优雅的分割线  ==============="
 
 lint: ## check style with flake8
-	$(DJANGO_DOCKER_RUN) flake8 yadjangoblog tests
+	$(DJANGO_DOCKER_RUN) flake8 mipha tests
 
 test: ## run tests quickly with the default Python
 	$(DJANGO_DOCKER_PATH_RUN) py.test --html=test_report.html --self-contained-html
 
 coverage: ## check code coverage quickly with the default Python
-	$(DJANGO_DOCKER_PATH_RUN) py.test tests/ --cov=yadjangoblog
-
-sep--sep-c: ## ========== 文档生成相关 ==============
-	echo "## ========== 本行只是优雅的分割线  ==============="
-
-docs: ## generate Sphinx HTML documentation, including API docs
-	rm -f docs/source/yadjangoblog.rst
-	rm -f docs/source/yadjangoblog/*
-	rm -f docs/source/modules.rst
-	find ./yadjangoblog/  -maxdepth 1 -not -name "*template" -not -name "*static" -not -name "*__pycache__*" -not -name 'yadjangoblog' -exec sphinx-apidoc -o docs/source/yadjangoblog"{}" \;
-	$(MAKE) -C docs clean
-	$(MAKE) -C docs html
-	$(BROWSER) docs/build/html/index.html
-
-servedocs: docs ## compile the docs watching for changes
-	watchmedo shell-command -p '*.rst' -c '$(MAKE) -C docs html' -R -D .
+	$(DJANGO_DOCKER_PATH_RUN) py.test tests/ --cov=mipha
 
 sep--sep-d: ## ========== 程序发布相关 ==============
 	echo "## ========== 本行只是优雅的分割线  ==============="
