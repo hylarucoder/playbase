@@ -168,11 +168,11 @@ CACHES = {
 SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 SESSION_CACHE_ALIAS = "default"
 
-import socket
+# import socket
 
-# tricks to have debug toolbar when developing with docker
-ip = socket.gethostbyname(socket.gethostname())
-INTERNAL_IPS += [ip[:-1] + "1"]
+# # tricks to have debug toolbar when developing with docker
+# ip = socket.gethostbyname(socket.gethostname())
+# INTERNAL_IPS += [ip[:-1] + "1"]
 
 DATABASES = {
     "default": {
