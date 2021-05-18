@@ -1,0 +1,72 @@
+version: "3.7"
+
+x-mipha-common:
+  &mipha-common
+  image: mipha:local
+  volumes:
+    - .:/opt/mipha
+  environment:
+    &mipha-common-env
+    DJANGO_ADMIN_URL: admin
+    DJANGO_SETTINGS_MODULE: config.settings.local
+    DJANGO_SECRET_KEY: @ZF8dr8z@L*asd3oR?R/pe1}|l12enem(ppFV=U<!F@lF-k9wE
+    DJANGO_ALLOWED_HOSTS: .twocucao.xyz
+
+services:
+  postgres:
+    image: postgres:13
+    restart: always
+    environment:
+      - DATABASE_HOST=127.0.0.1
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
+    volumes:
+      - ./compose/postgres/docker_postgres_init.sql:/docker-entrypoint-initdb.d/docker_postgres_init.sql
+      - ./.volume/postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:latest
+    healthcheck:
+      test: [ "CMD", "redis-cli", "ping" ]
+      interval: 5s
+      timeout: 30s
+      retries: 50
+    restart: always
+
+  elasticsearch:
+    image: elasticsearch:local
+    ports:
+      - '9200:9200'
+      - '9100:9100'
+
+  mipha-web:
+    <<: *mipha-common
+    command: /start-dev.sh
+    ports:
+      - "8000:8000"
+
+  mipha-toolbox:
+    <<: *mipha-common
+    command: /start-dev.sh
+
+  mipha-worker:
+    <<: *mipha-common
+    command: /start-celeryworker.sh
+
+  mipha-beat:
+    <<: *mipha-common
+    command: /start-celerybeat.sh
+
+  mipha-flower:
+    <<: *mipha-common
+    command: /start-celeryflower.sh
+
+volumes:
+  postgres_data_dev: { }
+  postgres_backup_dev: { }

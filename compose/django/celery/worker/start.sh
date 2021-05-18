@@ -7,4 +7,4 @@ set -o xtrace
 
 sleep 3
 
-celery -A yadjangoblog.yataskapp worker -l INFO
+celery -A mipha.yataskapp worker -l INFO

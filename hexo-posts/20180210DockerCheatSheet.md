@@ -85,7 +85,7 @@ docker-machine create --engine-registry-mirror=https://xxxxxx.mirror.aliyuncs.co
 ├── MANIFEST.in
 ├── Makefile
 ├── README.md
-├── assets
+├── static
 ├── compose
 │   ├── django
 │   ├── elasticsearch
@@ -106,7 +106,7 @@ docker-machine create --engine-registry-mirror=https://xxxxxx.mirror.aliyuncs.co
 │   ├── make.bat
 │   ├── make_pdf.sh
 │   └── source
-├── manage.py
+├── cli.py
 ├── pytest.ini
 ├── requirements
 │   ├── base.txt
@@ -119,14 +119,14 @@ docker-machine create --engine-registry-mirror=https://xxxxxx.mirror.aliyuncs.co
 │   ├── __init__.py
 │   ├── conftest.py
 │   └── test_basics.py
-└── yadjangoblog
+└── mipha
     ├── __init__.py
     ├── contrib
     ├── static
     ├── templates
     ├── yaaccounts
     ├── yaadmin
-    ├── yaapi
+    ├── user
     ├── yablog
     ├── yacommon
     └── yataskapp

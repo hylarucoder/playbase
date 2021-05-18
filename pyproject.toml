@@ -1,0 +1,81 @@
+[tool.poetry]
+name = "mipha"
+version = "0.1.0"
+description = ""
+authors = [
+  "twocucao <twocucao@gmail.com>",
+]
+include = ["mipha/templates/", "mipha/static/"]
+
+[[tool.poetry.source]]
+name = "aliyun"
+url = 'https://mirrors.aliyun.com/pypi/simple/'
+default = true
+
+[tool.poetry.scripts]
+djcli = 'mipha.cli:main'
+
+[tool.poetry.dependencies]
+python = "^3.9"
+celery = "*"
+devtools = "*"
+ipdb = "*"
+ipython = "*"
+orjson = "*"
+pandas = "*"
+psycopg2-binary = "*"
+pydantic = "*"
+pyjwt = "*"
+requests = "^2.19.1"
+xlrd = "^1.1.0"
+xlsxwriter = "^1.1"
+oss2 = "^2.14.0"
+aliyun-python-sdk-sts = "^3.0.2"
+gevent = "^21.1.2"
+django = "^3.2.3"
+djangorestframework = "^3.12.4"
+django-cors-headers = "^3.7.0"
+djangorestframework-jwt = "^1.11.0"
+django-guardian = "^2.3.0"
+pillow = "^8.2.0"
+django-filter = "^2.4.0"
+django-redis = "^4.12.1"
+elasticsearch-dsl = "^7.3.0"
+werkzeug = "^2.0.1"
+django-mptt = "^0.12.0"
+django-extensions = "^3.1.3"
+django-debug-toolbar = "^3.2.1"
+gunicorn = "^20.1.0"
+
+
+[tool.poetry.dev-dependencies]
+pytest = "*"
+flake8 = "*"
+fabric = "*"
+sqlalchemy-stubs = "*"
+black = "*"
+mypy = "*"
+pytest-django = "^4.3.0"
+pytest-html = "^3.1.1"
+
+
+[tool.black]
+target-version = ['py38']
+exclude = '''
+/(
+    \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+)/
+'''
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
+
