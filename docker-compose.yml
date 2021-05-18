@@ -7,10 +7,7 @@ x-mipha-common:
     - .:/opt/mipha
   environment:
     &mipha-common-env
-    DJANGO_ADMIN_URL: admin
-    DJANGO_SETTINGS_MODULE: config.settings.local
     DJANGO_SECRET_KEY: @ZF8dr8z@L*asd3oR?R/pe1}|l12enem(ppFV=U<!F@lF-k9wE
-    DJANGO_ALLOWED_HOSTS: .twocucao.xyz
 
 services:
   postgres:
@@ -47,25 +44,25 @@ services:
 
   mipha-web:
     <<: *mipha-common
-    command: /start-dev.sh
+    command: ["mipha-cli", "webserver"]
     ports:
       - "8000:8000"
 
   mipha-toolbox:
     <<: *mipha-common
-    command: /start-dev.sh
+    command: ["mipha-cli"]
 
   mipha-worker:
     <<: *mipha-common
-    command: /start-celeryworker.sh
+    command: ["mipha-cli", "worker"]
 
   mipha-beat:
     <<: *mipha-common
-    command: /start-celerybeat.sh
+    command: ["mipha-cli", "beat"]
 
   mipha-flower:
     <<: *mipha-common
-    command: /start-celeryflower.sh
+    command: ["mipha-cli", "flower"]
 
 volumes:
   postgres_data_dev: { }

@@ -30,12 +30,10 @@ THIRD_PARTY_APPS = (
     "rest_framework_jwt",
     "guardian",
     "mptt",
-    "django_filters"
+    "django_filters",
 )
 
-LOCAL_APPS = (
-    "mipha",
-)
+LOCAL_APPS = ("mipha",)
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
@@ -181,7 +179,7 @@ DATABASES = {
         "USER": "mipha",
         "PASSWORD": "mipha123",
         "HOST": "localhost",
-        "PORT": 5432
+        "PORT": 5432,
     }
 }
 

@@ -100,31 +100,17 @@ install: clean ## install the package to the active Python's site-packages
 sep--sep-e: ## ========== Docker 镜像相关 ==============
 	echo "## ========== 本行只是优雅的分割线  ==============="
 
-build-postgres: ## > Postgres
-	docker build -t 'db-postgres:0.1' -f 'compose/postgres/Dockerfile-dev' .
+build-mipha: ## > mipha
+	docker build -t 'mipha:local' -f 'compose/django/Dockerfile' .
 
-force-build-postgres: ## > Postgres
-	docker build -t 'db-postgres:0.1' -f 'compose/postgres/Dockerfile-dev' --no-cache .
+build-mipha-no-cache: ## > mipha
+	docker build -t 'mipha:local' -f 'compose/django/Dockerfile' --no-cache .
 
-build-ubuntu: ## > base ubuntu
-	docker build -t 'base-ubuntu:0.1' -f 'compose/django/Dockerfile-dev-base' .
+build-elasticsearch: ## > elasticsearch
+	docker build -t 'elasticsearch:local' -f 'compose/elasticsearch/Dockerfile-dev' .
 
-force-build-ubuntu: ## > base ubuntu
-	docker build -t 'base-ubuntu:0.1' -f 'compose/django/Dockerfile-dev-base' --no-cache .
-
-build-django: ## > base django
-	docker build -t 'base-django:0.1' -f 'compose/django/Dockerfile-dev' .
-
-force-build-django: ## > base django
-	docker build -t 'base-django:0.1' -f 'compose/django/Dockerfile-dev' --no-cache .
-
-build-elasticsearch: ## > base elasticsearch
-	docker build -t 'base-elasticsearch:0.1' -f 'compose/elasticsearch/Dockerfile-dev' .
-
-force-build-elasticsearch: ## > base elasticsearch
-	docker build -t 'base-elasticsearch:0.1' -f 'compose/elasticsearch/Dockerfile-dev' . --no-cache
-
-build-all: build-postgres build-ubuntu build-django build-elasticsearch ## > build 所需所有镜像
+build-elasticsearch-no-cache: ## > elasticsearch
+	docker build -t 'elasticsearch:local' -f 'compose/elasticsearch/Dockerfile-dev' . --no-cache
 
 sep--sep-f: ## ========== 文件清理相关 ==============
 	echo "## ========== 本行只是优雅的分割线  ==============="
