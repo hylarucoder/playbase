@@ -8,6 +8,7 @@ class User(Model):
         verbose_name = verbose_name_plural = "用户账号"
         db_table = 'user'
 
+    id = models.BigAutoField(primary_key=True)
     username = models.CharField(
         "用户名",
         max_length=50,

@@ -8,6 +8,7 @@ class BlogCategory(Model):
         verbose_name = verbose_name_plural = "博客分类"
         db_table = 'blog_category'
 
+    id = models.BigAutoField(primary_key=True)
     name = models.CharField(
         verbose_name="分类名",
         db_index=True,
@@ -27,6 +28,7 @@ class BlogTag(models.Model):
         verbose_name = verbose_name_plural = "博客标签"
         db_table = 'blog_tag'
 
+    id = models.BigAutoField(primary_key=True)
     name = models.CharField(
         verbose_name="标签名",
         db_index=True,
@@ -46,6 +48,7 @@ class BlogPost(models.Model):
         verbose_name = verbose_name_plural = "博客博文"
         db_table = 'blog_post'
 
+    id = models.BigAutoField(primary_key=True)
     title = models.CharField(verbose_name="标题", unique=True, max_length=255)
     content = models.TextField(verbose_name="内容")
     char_num = models.IntegerField(verbose_name="字数统计", default=0)

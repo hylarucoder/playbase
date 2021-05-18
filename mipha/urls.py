@@ -2,7 +2,7 @@ from django.conf import settings
 from django.conf.urls import include
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import re_path
+from django.urls import re_path, path
 from django.views import defaults as default_views
 from django.views.generic import RedirectView
 from django.views.generic import TemplateView
@@ -12,10 +12,10 @@ favicon_view = RedirectView.as_view(url="/static/favicon.ico", permanent=True)
 
 urlpatterns = (
         [
-            re_path(r"^$", TemplateView.as_view(template_name="index.html")),
-            re_path(r"^api/", include(user_urlpatterns)),
-            re_path(r"^favicon\.ico$", favicon_view),
-            re_path(settings.ADMIN_URL, admin.site.urls),
+            path("", TemplateView.as_view(template_name="index.html")),
+            path("api/", include(user_urlpatterns)),
+            path("favicon.ico", favicon_view),
+            path(settings.ADMIN_URL, admin.site.urls),
         ]
         + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
         + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
