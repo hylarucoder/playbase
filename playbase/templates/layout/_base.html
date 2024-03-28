@@ -1,0 +1,44 @@
+{% load static %}
+{% load django_htmx %}
+{% load component_tags %}
+{% load i18n %}
+{% load use_icon %}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="description" content="Django HTMX Components"/>
+    <meta name="keywords" content="Django, HTMX, Components"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    {% if title %}
+        <title>{{ title }}</title>
+    {% else %}
+        <title>Echo</title>
+    {% endif %}
+    <meta name="htmx-config" content='{"historyCacheSize": 15}'/>
+    <link rel="stylesheet" href="{% static 'css/mvp.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}"/>
+    {% block style %} {% endblock style %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.15.0/cdn/themes/light.css"/>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.15.0/cdn/shoelace.js"></script>
+
+
+    <script src="{% static 'js/htmx/htmx.js' %}" defer></script>
+    <script src="{% static 'js/htmx/ext/debug.js' %}" defer></script>
+    <script src="{% static 'js/htmx/ext/event-header.js' %}" defer></script>
+    <script src="{% static 'js/alphinejs/3.13.7.js' %}" defer></script>
+    {% component_css_dependencies %}
+</head>
+<body
+        hx-ext="debug, event-header"
+        hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
+        class="min-h-screen"
+>
+
+{% block body %}{% endblock %}
+{% django_htmx_script %} {% component_js_dependencies %}
+{% block javascript %} {% endblock javascript %}
+{% include "partial/dt_htxm.html" %}
+</body>
+</html>

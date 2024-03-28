@@ -1,9 +1,4 @@
 from django.db.models import Count
-from django_filters import rest_framework as filters
-from rest_framework import generics, permissions, serializers
-from rest_framework.response import Response
-from rest_framework.filters import OrderingFilter
-
 from playbase.models import BlogCategory, BlogTag, BlogPost
 from .base import BaseAPIView
 from ..pagenations import SmallResultsSetPagination

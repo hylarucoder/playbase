@@ -1,0 +1,51 @@
+{% load use_icon %}
+{% load active_link %}
+<div class="hidden border-r bg-muted/40 md:block">
+    <div class="flex h-full max-h-screen flex-col gap-2">
+        <div class="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
+            <a class="flex items-center gap-2 font-semibold" href="/dashboard">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                     stroke-linejoin="round" class="lucide lucide-package2 h-6 w-6">
+                    <path d="M3 9h18v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9Z"></path>
+                    <path d="m3 9 2.45-4.9A2 2 0 0 1 7.24 3h9.52a2 2 0 0 1 1.8 1.1L21 9"></path>
+                    <path d="M12 3v6"></path>
+                </svg>
+                <span class="">RocketBase</span>
+            </a>
+            <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground ml-auto h-8 w-8">
+                {% include "partial/icon/notification.html" %}
+                <span class="sr-only">Toggle notifications</span></button>
+        </div>
+        <div class="flex-1">
+            <nav class="grid items-start px-2 text-sm font-medium lg:px-4">
+                {% for menu in menus %}
+                    <a class="{% active_link menu.view_name 'bg-muted text-primary' 'text-muted-foreground' %} flex items-center gap-3 rounded-lg px-3 py-2 transition-all hover:text-primary"
+                       href="{% url menu.view_name %}"
+                    >
+                        {% use_icon menu.icon %}
+                        {{ menu.name }}
+                        {% if menu.count %}
+                            <div class="border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-primary text-primary-foreground shadow hover:bg-primary/80 ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full">
+                                {{ menu.count }}
+                            </div>
+                        {% endif %}
+                    </a>
+                {% endfor %}
+            </nav>
+        </div>
+        <div class="mt-auto p-4">
+            <div class="rounded-xl border bg-card text-card-foreground shadow">
+                <div class="flex flex-col space-y-1.5 p-2 pt-0 md:p-4"><h3
+                        class="font-semibold leading-none tracking-tight">Upgrade to Pro</h3>
+                    <p class="text-sm text-muted-foreground">Unlock all features and get unlimited
+                        access to our support team.</p></div>
+                <div class="p-2 pt-0 md:p-4 md:pt-0">
+                    <button class="inline-flex items-center justify-center whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground shadow hover:bg-primary/90 h-8 rounded-md px-3 text-xs w-full">
+                        Upgrade
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

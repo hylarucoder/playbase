@@ -1,0 +1,15 @@
+{% extends "layout/_dashboard.html" %}
+{% block title %}
+    Dashboard
+{% endblock %}
+{% block main %}
+    <div class="flex items-center">
+        <h1 class="text-lg font-semibold md:text-2xl">Inventory</h1>
+    </div>
+    <div class="flex flex-1 items-center justify-center rounded-lg border border-dashed shadow-sm">
+        <sl-alert open>
+            <sl-icon slot="icon" name="info-circle"></sl-icon>
+            This is a standard alert. You can customize its content and even the icon.
+        </sl-alert>
+    </div>
+{% endblock %}

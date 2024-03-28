@@ -1,0 +1,596 @@
+{% extends "layout/_default.html" %}
+{% block main %}
+    <div class="max-w-screen-xl mx-auto">
+        <header
+                class="flex flex-col items-center justify-center text-center bg-gradient-to-r from-pink-300 via-red-300 to-yellow-200 py-24"
+        >
+            <h1 class="text-4xl font-bold text-gray-800">
+                让你的商品第一时间被深情宠幸
+            </h1>
+            <p class="mt-4 text-lg text-gray-600">电商新品速成人气明星的AIGC营销平台</p>
+            <p class="mt-2 text-sm text-gray-500">
+                变态卡哇伊多彩多样 | 超低门槛获取高精度文本 | 精美图文秒钟级生成
+            </p>
+            <button
+                    class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2 mt-6 bg-red-500 hover:bg-red-600 text-white"
+            >
+                立即使用
+            </button>
+        </header>
+        {% component "calendar" date="2015-06-19" %}{% endcomponent %}
+        <section class="grid grid-cols-3 gap-4 p-8">
+            <div
+                    class="rounded-lg border bg-card text-card-foreground shadow-sm w-full"
+                    data-v0-t="card"
+            >
+                <div class="p-6">
+                    <img
+                            src="/placeholder.svg"
+                            alt="示例图片"
+                            class="rounded-lg"
+                            width="240"
+                            height="240"
+                            style="aspect-ratio: 240 / 240; object-fit: cover"
+                    />
+                    <div class="mt-4 text-center">
+                        <p class="text-lg font-semibold">纯人像</p>
+                        <p class="text-sm text-gray-500">生活照</p>
+                    </div>
+                </div>
+            </div>
+            <div
+                    class="rounded-lg border bg-card text-card-foreground shadow-sm w-full"
+                    data-v0-t="card"
+            >
+                <div class="p-6">
+                    <img
+                            src="/placeholder.svg"
+                            alt="示例图片"
+                            class="rounded-lg"
+                            width="240"
+                            height="240"
+                            style="aspect-ratio: 240 / 240; object-fit: cover"
+                    />
+                    <div class="mt-4 text-center">
+                        <p class="text-lg font-semibold">纯人像</p>
+                        <p class="text-sm text-gray-500">生活照</p>
+                    </div>
+                </div>
+            </div>
+            <div
+                    class="rounded-lg border bg-card text-card-foreground shadow-sm w-full"
+                    data-v0-t="card"
+            >
+                <div class="p-6">
+                    <img
+                            src="/placeholder.svg"
+                            alt="示例图片"
+                            class="rounded-lg"
+                            width="240"
+                            height="240"
+                            style="aspect-ratio: 240 / 240; object-fit: cover"
+                    />
+                    <div class="mt-4 text-center">
+                        <p class="text-lg font-semibold">纯人像</p>
+                        <p class="text-sm text-gray-500">生活照</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-12 md:py-16">
+                <div class="max-w-md">
+                    <button
+                            class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-primary/90 h-10 bg-[#ff7875] text-white px-4 py-2 rounded"
+                    >
+                        AI图像
+                    </button>
+                    <h2 class="mt-4 text-4xl font-extrabold tracking-tight text-gray-900">
+                        轻松get亲近自然感
+                    </h2>
+                    <p class="mt-4 text-lg text-gray-500">
+                        上传5张多角度照片，轻松定制出「亲近自然」风格照片。
+                    </p>
+                    <button
+                            class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-primary/90 h-10 mt-6 bg-black text-white px-8 py-3 rounded"
+                    >
+                        去定制
+                    </button>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="relative">
+                        <img
+                                class="rounded-lg"
+                                src="/placeholder.svg"
+                                alt="Nature image"
+                                width="300"
+                                height="400"
+                                style="aspect-ratio: 300/400; object-fit: cover"
+                        />
+                        <div
+                                class="absolute inset-0 flex justify-center items-center bg-white bg-opacity-75"
+                        >
+                            <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="h-6 w-6 text-gray-800"
+                            >
+                                <path d="M5 12h14"></path>
+                                <path d="m12 5 7 7-7 7"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="space-y-4">
+                        <img
+                                class="rounded-lg"
+                                src="/placeholder.svg"
+                                alt="Before image"
+                                width="150"
+                                height="200"
+                                style="aspect-ratio: 150/200; object-fit: cover"
+                        /><img
+                            class="rounded-lg"
+                            src="/placeholder.svg"
+                            alt="After image"
+                            width="150"
+                            height="200"
+                            style="aspect-ratio: 150/200; object-fit: cover"
+                    />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--
+		// v0 by Vercel.
+		// https://v0.dev/t/Z2gGrV27SYq
+		-->
+    <div class="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+            <div>
+                <div class="flex justify-between mb-6">
+                    <div class="flex space-x-2">
+                        <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="text-gray-400"
+                        >
+                            <path
+                                    d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"
+                            ></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                        </svg>
+                        <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="text-gray-400"
+                        >
+                            <path
+                                    d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"
+                            ></path>
+                        </svg>
+                        <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="text-gray-400"
+                        >
+                            <rect width="18" height="18" x="3" y="3" rx="2" ry="2"></rect>
+                            <circle cx="9" cy="9" r="2"></circle>
+                            <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"></path>
+                        </svg>
+                        <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="text-gray-400"
+                        >
+                            <line x1="12" x2="12" y1="20" y2="10"></line>
+                            <line x1="18" x2="18" y1="20" y2="4"></line>
+                            <line x1="6" x2="6" y1="20" y2="16"></line>
+                        </svg>
+                        <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="text-gray-400"
+                        >
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.3-4.3"></path>
+                        </svg>
+                    </div>
+                    <div class="flex space-x-2">
+                        <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="text-gray-400"
+                        >
+                            <path
+                                    d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"
+                            ></path>
+                            <circle cx="12" cy="12" r="3"></circle>
+                        </svg>
+                        <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="text-gray-400"
+                        >
+                            <path d="M2 20h.01"></path>
+                            <path d="M7 20v-4"></path>
+                            <path d="M12 20v-8"></path>
+                            <path d="M17 20V8"></path>
+                            <path d="M22 4v16"></path>
+                        </svg>
+                        <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="text-gray-400"
+                        >
+                            <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                    </div>
+                </div>
+                <h2 class="text-3xl font-bold mb-4">营销分享 | 全方格创小蓝筹精选💖</h2>
+                <p class="mb-4">看看秋冬都能穿的格纹套装 | 上身效果超好</p>
+                <p class="mb-4">设计感满满 腰部的收腰显瘦</p>
+                <p class="mb-4">穿起来满满品质感</p>
+                <p class="mb-4">做工精致 细节处理得很到位！</p>
+                <p class="mb-4">D.T.之的格纹收腰显瘦两件套</p>
+                <p class="mb-4">让你在冬日微凉的季节也能美美哒</p>
+                <p class="mb-4">#日常通勤穿搭 #我的上班通勤穿搭 #看秀穿搭 #通勤穿搭</p>
+            </div>
+            <div>
+                <div class="flex justify-between mb-6">
+                    <div class="flex space-x-2">
+                        <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="text-gray-400"
+                        >
+                            <path
+                                    d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"
+                            ></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                        </svg>
+                        <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="text-gray-400"
+                        >
+                            <path
+                                    d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"
+                            ></path>
+                        </svg>
+                        <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="text-gray-400"
+                        >
+                            <rect width="18" height="18" x="3" y="3" rx="2" ry="2"></rect>
+                            <circle cx="9" cy="9" r="2"></circle>
+                            <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"></path>
+                        </svg>
+                        <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="text-gray-400"
+                        >
+                            <line x1="12" x2="12" y1="20" y2="10"></line>
+                            <line x1="18" x2="18" y1="20" y2="4"></line>
+                            <line x1="6" x2="6" y1="20" y2="16"></line>
+                        </svg>
+                        <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="text-gray-400"
+                        >
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.3-4.3"></path>
+                        </svg>
+                    </div>
+                    <div class="flex space-x-2">
+                        <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="text-gray-400"
+                        >
+                            <path
+                                    d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"
+                            ></path>
+                            <circle cx="12" cy="12" r="3"></circle>
+                        </svg>
+                        <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="text-gray-400"
+                        >
+                            <path d="M2 20h.01"></path>
+                            <path d="M7 20v-4"></path>
+                            <path d="M12 20v-8"></path>
+                            <path d="M17 20V8"></path>
+                            <path d="M22 4v16"></path>
+                        </svg>
+                        <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="text-gray-400"
+                        >
+                            <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                    </div>
+                </div>
+                <h2 class="text-3xl font-bold mb-4">通勤💗通勤的福音来啦</h2>
+                <p class="mb-4">中高的！</p>
+                <p class="mb-4">文的女星！</p>
+                <p class="mb-4">点点 被誉为的日常穿</p>
+                <p class="mb-4">绝不褪色 穿搭也太好了！</p>
+                <p class="mb-4">随即可以的好起来了</p>
+                <p class="mb-4">#变美 #抓重点 #秋冬日常 #美术生化妆 #洗面奶</p>
+            </div>
+        </div>
+        <div class="mt-16">
+            <div class="flex justify-between items-center">
+                <div>
+                    <h3 class="text-4xl font-bold mb-4">轻松创作精美文</h3>
+                    <p class="mb-4">
+                        结合高品质模板和人设，AI帮您高效创作文稿，自动生成文稿
+                    </p>
+                    <p class="mb-4">草文案，中约90%的创作时间</p>
+                </div>
+                <button
+                        class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-primary/90 h-10 px-4 py-2 bg-black text-white"
+                >
+                    查看成果
+                </button>
+            </div>
+        </div>
+    </div>
+    <!--
+		// v0 by Vercel.
+		// https://v0.dev/t/yu4RZYJN1ib
+		-->
+    <div class="max-w-screen-xl mx-auto px-4">
+        <div class="py-8">
+            <h1 class="text-3xl font-bold text-center mb-6">精选美图</h1>
+            <div class="flex justify-between mb-4">
+                <button
+                        class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2"
+                >
+                    AI推图
+                </button>
+                <button
+                        class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2"
+                >
+                    AI选图
+                </button>
+            </div>
+            <div class="grid grid-cols-4 gap-4">
+                <div>
+                    <img
+                            src="/placeholder.svg"
+                            alt="Fashionable outfit"
+                            class="w-full h-auto rounded-lg mb-2"
+                            width="300"
+                            height="400"
+                            style="aspect-ratio: 300/400; object-fit: cover"
+                    />
+                    <h2 class="text-lg font-semibold mb-1">高级时装博主</h2>
+                    <div class="flex -space-x-2">
+          <span
+                  class="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full"
+          ></span
+          ><span
+                            class="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full"
+                    ></span
+                    ><span
+                            class="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full"
+                    ></span
+                    ><span
+                            class="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full"
+                    ></span>
+                    </div>
+                    <button
+                            class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 mt-2"
+                    >
+                        使用模板
+                    </button>
+                </div>
+                <div>
+                    <img
+                            src="/placeholder.svg"
+                            alt="Casual wear"
+                            class="w-full h-auto rounded-lg mb-2"
+                            width="300"
+                            height="400"
+                            style="aspect-ratio: 300/400; object-fit: cover"
+                    />
+                    <h2 class="text-lg font-semibold mb-1">居家休闲穿搭</h2>
+                    <div class="flex -space-x-2">
+          <span
+                  class="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full"
+          ></span
+          ><span
+                            class="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full"
+                    ></span
+                    ><span
+                            class="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full"
+                    ></span>
+                    </div>
+                    <button
+                            class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 mt-2"
+                    >
+                        使用模板
+                    </button>
+                </div>
+                <div>
+                    <img
+                            src="/placeholder.svg"
+                            alt="Work outfit"
+                            class="w-full h-auto rounded-lg mb-2"
+                            width="300"
+                            height="400"
+                            style="aspect-ratio: 300/400; object-fit: cover"
+                    />
+                    <h2 class="text-lg font-semibold mb-1">职场精英穿搭</h2>
+                    <div class="flex -space-x-2">
+          <span
+                  class="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full"
+          ></span
+          ><span
+                            class="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full"
+                    ></span>
+                    </div>
+                    <button
+                            class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 mt-2"
+                    >
+                        使用模板
+                    </button>
+                </div>
+                <div>
+                    <img
+                            src="/placeholder.svg"
+                            alt="Winter fashion"
+                            class="w-full h-auto rounded-lg mb-2"
+                            width="300"
+                            height="400"
+                            style="aspect-ratio: 300/400; object-fit: cover"
+                    />
+                    <h2 class="text-lg font-semibold mb-1">冬季温暖穿搭</h2>
+                    <div class="flex -space-x-2">
+          <span
+                  class="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full"
+          ></span
+          ><span
+                            class="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full"
+                    ></span>
+                    </div>
+                    <button
+                            class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 mt-2"
+                    >
+                        使用模板
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

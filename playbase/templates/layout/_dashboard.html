@@ -1,0 +1,14 @@
+{% extends "layout/_base.html" %}
+
+{% block body %}
+    <div class="grid min-h-screen bg-white w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
+        {% include "pages/dashboard/partials/_sidebar.html" %}
+        <div class="flex flex-col">
+            {% include "pages/dashboard/partials/_header.html" %}
+            <main class="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
+                {% block main %}
+                {% endblock %}
+            </main>
+        </div>
+    </div>
+{% endblock %}

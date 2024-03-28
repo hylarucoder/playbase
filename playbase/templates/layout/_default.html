@@ -1,0 +1,9 @@
+{% extends "layout/_base.html" %}
+
+{% block body %}
+    <div class="max-w-[80vw] mx-auto">
+        {% include "components/header.html" %}
+        <main id="main" class="mt-5">{% block main %}{% endblock %}</main>
+        {% include "components/footer.html" %}
+    </div>
+{% endblock %}
