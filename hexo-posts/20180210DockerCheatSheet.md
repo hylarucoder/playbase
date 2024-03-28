@@ -119,7 +119,7 @@ docker-machine create --engine-registry-mirror=https://xxxxxx.mirror.aliyuncs.co
 │   ├── __init__.py
 │   ├── conftest.py
 │   └── test_basics.py
-└── mipha
+└── playbase
     ├── __init__.py
     ├── contrib
     ├── static
