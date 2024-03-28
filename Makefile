@@ -1,15 +1,5 @@
 .PHONY: clean clean-test clean-pyc clean-build docs help
 .DEFAULT_GOAL := help
-define BROWSER_PYSCRIPT
-import os, webbrowser, sys
-try:
-	from urllib import pathname2url
-except:
-	from urllib.request import pathname2url
-
-webbrowser.open("file://" + pathname2url(os.path.abspath(sys.argv[1])))
-endef
-export BROWSER_PYSCRIPT
 
 define PRINT_HELP_PYSCRIPT
 import re, sys
@@ -22,14 +12,15 @@ for line in sys.stdin:
 endef
 export PRINT_HELP_PYSCRIPT
 BROWSER := python -c "$$BROWSER_PYSCRIPT"
-PG_DOCKER_RUN := docker exec -i -t mipha_postgres_1
-DJANGO_DOCKER_RUN := docker exec -i -t mipha_django_1
-DJANGO_DOCKER_PATH_RUN := docker exec -i -t mipha_django_1
+PG_DOCKER_RUN := docker exec -i -t playbase_postgres_1
+DJANGO_DOCKER_RUN := docker exec -i -t playbase_django_1
+DJANGO_DOCKER_PATH_RUN := docker exec -i -t playbase_django_1
 
 help:
 	@python -c "$$PRINT_HELP_PYSCRIPT" < $(MAKEFILE_LIST)
 
-sep--sep-a: ## ========== 开发时命令 ==============
+format: ## format
+	ruff format .
 
 docker-build: ## build and compose up
 	docker compose build && docker-compose up
@@ -68,19 +59,19 @@ shell: ## Enter Shell
 	$(DJANGO_DOCKER_RUN) /bin/bash
 
 dbshell: ## Enter psql as postgres
-	$(PG_DOCKER_RUN) su postgres -c "psql -U mipha"
+	$(PG_DOCKER_RUN) su postgres -c "psql -U playbase"
 
 sep--sep-b: ## ========== 测试与代码质量 ==============
 	echo "## ========== 本行只是优雅的分割线  ==============="
 
 lint: ## check style with flake8
-	$(DJANGO_DOCKER_RUN) flake8 mipha tests
+	$(DJANGO_DOCKER_RUN) flake8 playbase tests
 
 test: ## run tests quickly with the default Python
 	$(DJANGO_DOCKER_PATH_RUN) py.test --html=test_report.html --self-contained-html
 
 coverage: ## check code coverage quickly with the default Python
-	$(DJANGO_DOCKER_PATH_RUN) py.test tests/ --cov=mipha
+	$(DJANGO_DOCKER_PATH_RUN) py.test tests/ --cov=playbase
 
 sep--sep-d: ## ========== 程序发布相关 ==============
 	echo "## ========== 本行只是优雅的分割线  ==============="
@@ -100,11 +91,11 @@ install: clean ## install the package to the active Python's site-packages
 sep--sep-e: ## ========== Docker 镜像相关 ==============
 	echo "## ========== 本行只是优雅的分割线  ==============="
 
-build-mipha: ## > mipha
-	docker build -t 'mipha:local' -f 'compose/django/Dockerfile' .
+build-playbase: ## > playbase
+	docker build -t 'playbase:local' -f 'compose/django/Dockerfile' .
 
-build-mipha-no-cache: ## > mipha
-	docker build -t 'mipha:local' -f 'compose/django/Dockerfile' --no-cache .
+build-playbase-no-cache: ## > playbase
+	docker build -t 'playbase:local' -f 'compose/django/Dockerfile' --no-cache .
 
 build-elasticsearch: ## > elasticsearch
 	docker build -t 'elasticsearch:local' -f 'compose/elasticsearch/Dockerfile-dev' .

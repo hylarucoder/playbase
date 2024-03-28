@@ -1,12 +1,12 @@
 version: "3.7"
 
-x-mipha-common:
-  &mipha-common
-  image: mipha:local
+x-playbase-common:
+  &playbase-common
+  image: playbase:local
   volumes:
-    - .:/opt/mipha
+    - .:/opt/playbase
   environment:
-    &mipha-common-env
+    &playbase-common-env
     DJANGO_SECRET_KEY: @ZF8dr8z@L*asd3oR?R/pe1}|l12enem(ppFV=U<!F@lF-k9wE
 
 services:
@@ -42,27 +42,27 @@ services:
       - '9200:9200'
       - '9100:9100'
 
-  mipha-web:
-    <<: *mipha-common
-    command: ["mipha-cli", "webserver"]
+  playbase-web:
+    <<: *playbase-common
+    command: ["playbase-cli", "webserver"]
     ports:
       - "8000:8000"
 
-  mipha-toolbox:
-    <<: *mipha-common
-    command: ["mipha-cli"]
+  playbase-toolbox:
+    <<: *playbase-common
+    command: ["playbase-cli"]
 
-  mipha-worker:
-    <<: *mipha-common
-    command: ["mipha-cli", "worker"]
+  playbase-worker:
+    <<: *playbase-common
+    command: ["playbase-cli", "worker"]
 
-  mipha-beat:
-    <<: *mipha-common
-    command: ["mipha-cli", "beat"]
+  playbase-beat:
+    <<: *playbase-common
+    command: ["playbase-cli", "beat"]
 
-  mipha-flower:
-    <<: *mipha-common
-    command: ["mipha-cli", "flower"]
+  playbase-flower:
+    <<: *playbase-common
+    command: ["playbase-cli", "flower"]
 
 volumes:
   postgres_data_dev: { }

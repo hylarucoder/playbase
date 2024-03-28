@@ -1,7 +1,7 @@
-CREATE USER mipha WITH PASSWORD 'mipha123' CREATEDB;
-CREATE DATABASE mipha
+CREATE USER playbase WITH PASSWORD 'playbase123' CREATEDB;
+CREATE DATABASE playbase
     WITH
-    OWNER = mipha
+    OWNER = playbase
     ENCODING = 'UTF8'
     LC_COLLATE = 'en_US.utf8'
     LC_CTYPE = 'en_US.utf8'
