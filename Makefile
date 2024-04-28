@@ -1,4 +1,4 @@
-.PHONY: clean clean-test clean-pyc clean-build docs help
+.PHONY:  help
 .DEFAULT_GOAL := help
 
 define PRINT_HELP_PYSCRIPT
@@ -8,31 +8,58 @@ for line in sys.stdin:
 	match = re.match(r'^([a-zA-Z_-]+):.*?## (.*)$$', line)
 	if match:
 		target, help = match.groups()
-		print("%-20s %s" % (target, help))
+		print("%-30s %s" % (target, help))
 endef
 export PRINT_HELP_PYSCRIPT
-BROWSER := python -c "$$BROWSER_PYSCRIPT"
-PG_DOCKER_RUN := docker exec -i -t playbase_postgres_1
-DJANGO_DOCKER_RUN := docker exec -i -t playbase_django_1
-DJANGO_DOCKER_PATH_RUN := docker exec -i -t playbase_django_1
 
 help:
 	@python -c "$$PRINT_HELP_PYSCRIPT" < $(MAKEFILE_LIST)
 
-format: ## format
+clear:
+	@rm -rf build dist
+
+build-wheel: ## build
+	rm -rf build dist
+	poetry build -f wheel
+
+flake8: ## lint
+	poetry run flake8 playbase
+
+mypy: ## mypy
+	poetry run mypy playbase
+
+publish: ## publish package to pypi
+	poetry publish --build
+
+test: ## test
+	docker-compose run --rm playbase-toolbox-test bash -c "python -m pytest tests"
+
+test.verbose: ## test.verbose
+	docker-compose run --rm playbase-toolbox-test bash -c "python -m pytest tests -v --pdb --pdbcls=IPython.terminal.debugger:Pdb"
+
+format: ## publish package to pypi
 	ruff format .
 
+collectstatic:
+	docker-compose run --rm playbase-toolbox bash -c "djcli collectstatic"
+
+shell_plus:
+	docker-compose run --rm playbase-toolbox bash -c "djcli shell_plus"
+
+db.makemigrations:
+	docker-compose run --rm playbase-toolbox bash -c "djcli makemigrations"
+
+db.migrate:
+	docker-compose run --rm playbase-toolbox bash -c "djcli migrate"
+
 docker-build: ## build and compose up
-	docker compose build && docker-compose up
+	docker-compose build && docker-compose up
 
-docker-build-no-cache: ## django / pg / es
-	docker compose build --no-cache  && docker-compose up
-
-before-up: ## some deamons
-	docker compose up -d redis postgres mailhog elasticsearch rabbitmq celeryflower
+docker-build-no-cache: ## build --no-cache
+	docker-compose build --no-cache  && docker-compose up
 
 start: ## runserver
-	docker compose up django
+	docker-compose run --rm --service-ports playbase-web
 
 beat: ## beat
 	docker compose up celerybeat
@@ -46,35 +73,15 @@ flower: ## flower
 up: ## build and up
 	docker compose up
 
-django-manager: ## Enter python manage.py
-	$(DJANGO_DOCKER_RUN) python manage.py
-
-django-import-articles: ## Enter python manage.py
+import-articles: ## Enter python manage.py
 	$(DJANGO_DOCKER_RUN) python manage.py import_hexo_source
-
-django-console: ## Enter Django Console
-	$(DJANGO_DOCKER_RUN) python manage.py shell
-
-shell: ## Enter Shell
-	$(DJANGO_DOCKER_RUN) /bin/bash
-
-dbshell: ## Enter psql as postgres
-	$(PG_DOCKER_RUN) su postgres -c "psql -U playbase"
 
 sep--sep-b: ## ========== 测试与代码质量 ==============
 	echo "## ========== 本行只是优雅的分割线  ==============="
 
-lint: ## check style with flake8
-	$(DJANGO_DOCKER_RUN) flake8 playbase tests
-
-test: ## run tests quickly with the default Python
-	$(DJANGO_DOCKER_PATH_RUN) py.test --html=test_report.html --self-contained-html
 
 coverage: ## check code coverage quickly with the default Python
-	$(DJANGO_DOCKER_PATH_RUN) py.test tests/ --cov=playbase
-
-sep--sep-d: ## ========== 程序发布相关 ==============
-	echo "## ========== 本行只是优雅的分割线  ==============="
+	$(DJANGO_DOCKER_PATH_RUN) pytest tests/ --cov=playbase
 
 release: clean ## package and upload a release
 	python setup.py sdist upload
@@ -92,19 +99,10 @@ sep--sep-e: ## ========== Docker 镜像相关 ==============
 	echo "## ========== 本行只是优雅的分割线  ==============="
 
 build-playbase: ## > playbase
-	docker build -t 'playbase:local' -f 'compose/django/Dockerfile' .
+	docker build -t 'playbase:local' -f 'compose/app/Dockerfile' .
 
 build-playbase-no-cache: ## > playbase
-	docker build -t 'playbase:local' -f 'compose/django/Dockerfile' --no-cache .
-
-build-elasticsearch: ## > elasticsearch
-	docker build -t 'elasticsearch:local' -f 'compose/elasticsearch/Dockerfile-dev' .
-
-build-elasticsearch-no-cache: ## > elasticsearch
-	docker build -t 'elasticsearch:local' -f 'compose/elasticsearch/Dockerfile-dev' . --no-cache
-
-sep--sep-f: ## ========== 文件清理相关 ==============
-	echo "## ========== 本行只是优雅的分割线  ==============="
+	docker build -t 'playbase:local' -f 'compose/app/Dockerfile' --no-cache .
 
 clean: clean-build clean-pyc clean-test ## remove all build, test, coverage and Python artifacts
 

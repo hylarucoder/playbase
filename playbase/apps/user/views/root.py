@@ -1,8 +1,3 @@
-from rest_framework.response import Response
-
-from .base import BaseAPIView
-
-
 class APIRootView(BaseAPIView):
     """
     以**动手实践**为荣，以**只看不练**为耻。

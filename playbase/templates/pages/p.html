@@ -1,0 +1,540 @@
+{% extends "layout/_base.html" %}
+{% block title %}
+    {{ post.title }}
+{% endblock %}
+{% block main %}
+    <article class="mt-2 flex space-x-6 px-0 sm:mt-2">
+        <div class="container-card max-w-[975px] dark:text-zinc-400">
+            <figure class="mb-4 h-[300px] w-full sm:h-[500px]">
+                <img
+                        src="{{ post.cover }}"
+                        width="1000"
+                        alt="cover"
+                        loading="lazy"
+                        data-nuxt-img=""
+                        class="aspect-[240/135] h-[280px] w-full rounded object-cover sm:h-[480px]"
+                />
+                <figcaption class="h-[20px] pt-3 text-center text-neutral-400">
+                    Photo by
+                    <a
+                            href="/about"
+                            class="cursor-pointer text-zinc-900 hover:text-orange-400 dark:text-zinc-400"
+                    >
+                        Lucas Cao
+                    </a>
+                </figcaption>
+            </figure>
+            <h1
+                    data-v-c9be5cdc=""
+                    id="prose-h1-title"
+                    class="prose-h1 px-8 dark:text-zinc-400"
+            >
+                <a
+                        data-v-c9be5cdc=""
+                        aria-current="page"
+                        href="/mj-geometry-composition#prose-h1-title"
+                        class="router-link-active router-link-exact-active"
+                >Midjourney Geometry Composition - Midjourney<!----></a
+                >
+            </h1>
+            <span class="my-0 flex space-x-10 px-8 text-zinc-600 dark:text-zinc-400"
+            ><span class="inline-flex items-center space-x-3"
+            ><span
+                    class="inline-flex items-center space-x-1 text-[12px] font-medium md:text-sm"
+            ><span
+                    class="i-mdi-book-outline text-[12px] font-medium dark:text-zinc-400 md:text-sm"
+            ></span
+            ><span class="dark:text-zinc-400">midjourney</span></span
+            ><span
+                    class="inline-flex items-center space-x-1 text-[12px] font-medium md:text-sm"
+            ><span
+                    class="i-mdi-calendar text-[12px] font-medium md:text-sm"
+            ></span
+            ><span class="dark:text-zinc-400">2024-01-06</span></span
+            ></span
+            ><span
+                    class="inline-flex items-center space-x-3 text-[12px] font-medium md:text-xs"
+            ><span class="inline-flex items-center space-x-1"
+            ><span
+                    class="i-mdi-cursor-default-click-outline text-[12px] font-medium md:text-sm"
+            ></span
+            ><span class="dark:text-zinc-400">10</span></span
+            ><span class="inline-flex items-center space-x-1"
+            ><span
+                    class="i-mdi-clock-outline text-[12px] font-medium md:text-sm"
+            ></span
+            ><span class="dark:text-zinc-400">2.6 min </span></span
+            ></span
+            ></span
+            >
+            <div class="mt-2 px-8">
+                <h2 data-v-03eff7cc="" id="foreword" class="prose-h2">
+                    <a
+                            data-v-03eff7cc=""
+                            aria-current="page"
+                            href="/mj-geometry-composition#foreword"
+                            class="router-link-active router-link-exact-active"
+                    >Foreword
+                        <!----></a
+                    >
+                </h2>
+                <h2 data-v-03eff7cc="" id="what-is-geometry-composition" class="prose-h2">
+                    <a
+                            data-v-03eff7cc=""
+                            aria-current="page"
+                            href="/mj-geometry-composition#what-is-geometry-composition"
+                            class="router-link-active router-link-exact-active"
+                    >What is Geometry Composition?<!----></a
+                    >
+                </h2>
+                <ul data-v-0dd29225="" class="prose-ul">
+                    <li data-v-bf1e481c="" class="prose-li">
+                        <code data-v-2ad195b0="" class="prose-code-inline"
+                        >Lines and Shapes</code
+                        >: Create rhythm and dynamics using straight lines, curves, circles,
+                        triangles, and other shapes.
+                    </li>
+                    <li data-v-bf1e481c="" class="prose-li">
+                        <code data-v-2ad195b0="" class="prose-code-inline"
+                        >Symmetry and Balance</code
+                        >: Provide the viewer with a sense of balance and harmony through
+                        symmetrical composition.
+                    </li>
+                    <li data-v-bf1e481c="" class="prose-li">
+                        <code data-v-2ad195b0="" class="prose-code-inline"
+                        >Repetition and Rhythm</code
+                        >: Create visual rhythm by repeating certain shapes or patterns in the
+                        image.
+                    </li>
+                    <li data-v-bf1e481c="" class="prose-li">
+                        <code data-v-2ad195b0="" class="prose-code-inline">Simplicity</code>:
+                        Highlight the subject by minimizing distracting elements and using
+                        simple geometric forms.
+                    </li>
+                    <li data-v-bf1e481c="" class="prose-li">
+                        <code data-v-2ad195b0="" class="prose-code-inline"
+                        >Division of the Screen</code
+                        >: Use geometric shapes to divide the screen into different parts,
+                        controlling the visual flow.
+                    </li>
+                    <li data-v-bf1e481c="" class="prose-li">
+                        <code data-v-2ad195b0="" class="prose-code-inline">Leading Lines</code
+                        >: Use lines within the image to guide the viewer's gaze, enhancing
+                        the directionality of the artwork.
+                    </li>
+                    <li data-v-bf1e481c="" class="prose-li">
+                        <code data-v-2ad195b0="" class="prose-code-inline"
+                        >Frame within a Frame</code
+                        >: Use elements such as doorframes and windows as frames within the
+                        image to create depth and focal points.
+                    </li>
+                    <li data-v-bf1e481c="" class="prose-li">
+                        <code data-v-2ad195b0="" class="prose-code-inline"
+                        >Diagonal and Triangular Composition</code
+                        >: Use diagonal and triangular compositions to add a sense of movement
+                        and stability to the image.
+                    </li>
+                </ul>
+                <h2
+                        data-v-03eff7cc=""
+                        id="geometry-composition-in-midjourney"
+                        class="prose-h2"
+                >
+                    <a
+                            data-v-03eff7cc=""
+                            aria-current="page"
+                            href="/mj-geometry-composition#geometry-composition-in-midjourney"
+                            class="router-link-active router-link-exact-active"
+                    >Geometry Composition in Midjourney<!----></a
+                    >
+                </h2>
+                <h2 data-v-03eff7cc="" id="diagonal-composition" class="prose-h2">
+                    <a
+                            data-v-03eff7cc=""
+                            aria-current="page"
+                            href="/mj-geometry-composition#diagonal-composition"
+                            class="router-link-active router-link-exact-active"
+                    >Diagonal composition<!----></a
+                    >
+                </h2>
+                <h2 data-v-03eff7cc="" id="lines-and-shapes" class="prose-h2">
+                    <a
+                            data-v-03eff7cc=""
+                            aria-current="page"
+                            href="/mj-geometry-composition#lines-and-shapes"
+                            class="router-link-active router-link-exact-active"
+                    >Lines and Shapes<!----></a
+                    >
+                </h2>
+                <div>
+                    <div class="grid gap-4 grid-cols-3">
+                        <div
+                                class="relative w-full transform overflow-hidden rounded bg-zinc-100 object-cover align-middle transition-transform duration-200 hover:shadow dark:bg-gray-800"
+                        >
+                            <img
+                                    src="/_vercel/image?url=/images/01.png&amp;w=640&amp;q=100"
+                                    width="360"
+                                    height="640"
+                                    loading="lazy"
+                                    data-nuxt-img=""
+                                    class="m-0 rounded"
+                                    srcset="
+                /_vercel/image?url=/images/01.png&amp;w=640&amp;q=100 1x,
+                /_vercel/image?url=/images/01.png&amp;w=768&amp;q=100 2x
+              "
+                            />
+                            <div
+                                    class="animate-pulse bg-gray-100 dark:bg-gray-800 rounded-md h-full w-full"
+                            ></div>
+                        </div>
+                        <div
+                                class="relative w-full transform overflow-hidden rounded bg-zinc-100 object-cover align-middle transition-transform duration-200 hover:shadow dark:bg-gray-800"
+                        >
+                            <img
+                                    src="/_vercel/image?url=/images/02.png&amp;w=640&amp;q=100"
+                                    width="360"
+                                    height="640"
+                                    loading="lazy"
+                                    data-nuxt-img=""
+                                    class="m-0 rounded"
+                                    srcset="
+                /_vercel/image?url=/images/02.png&amp;w=640&amp;q=100 1x,
+                /_vercel/image?url=/images/02.png&amp;w=768&amp;q=100 2x
+              "
+                            />
+                            <div
+                                    class="animate-pulse bg-gray-100 dark:bg-gray-800 rounded-md h-full w-full"
+                            ></div>
+                        </div>
+                        <div
+                                class="relative w-full transform overflow-hidden rounded bg-zinc-100 object-cover align-middle transition-transform duration-200 hover:shadow dark:bg-gray-800"
+                        >
+                            <img
+                                    src="/_vercel/image?url=/images/03.png&amp;w=640&amp;q=100"
+                                    width="360"
+                                    height="640"
+                                    loading="lazy"
+                                    data-nuxt-img=""
+                                    class="m-0 rounded"
+                                    srcset="
+                /_vercel/image?url=/images/03.png&amp;w=640&amp;q=100 1x,
+                /_vercel/image?url=/images/03.png&amp;w=768&amp;q=100 2x
+              "
+                            />
+                            <div
+                                    class="animate-pulse bg-gray-100 dark:bg-gray-800 rounded-md h-full w-full"
+                            ></div>
+                        </div>
+                    </div>
+                    <div class="mt-4 rounded bg-orange-400 p-4">
+                        <p class="line-clamp-3 text-white">
+                            in a cartoonish vibrancy medium shot, a young woman in a red Hanfu
+                            radiates with bold colors against a calm lake. Her expression blends
+                            resolve with a hint of whimsy. Behind her, a large-eyed, grinning
+                            dragon with vibrant orange scales hovers, cartoon outlines
+                            highlighting its whimsical form. They share a playful,
+                            light-drenched moment.
+                        </p>
+                    </div>
+                    <!---->
+                </div>
+                <h2 data-v-03eff7cc="" id="symmetry-and-balance" class="prose-h2">
+                    <a
+                            data-v-03eff7cc=""
+                            aria-current="page"
+                            href="/mj-geometry-composition#symmetry-and-balance"
+                            class="router-link-active router-link-exact-active"
+                    >Symmetry and Balance<!----></a
+                    >
+                </h2>
+                <h2 data-v-03eff7cc="" id="repetition-and-rhythm" class="prose-h2">
+                    <a
+                            data-v-03eff7cc=""
+                            aria-current="page"
+                            href="/mj-geometry-composition#repetition-and-rhythm"
+                            class="router-link-active router-link-exact-active"
+                    >Repetition and Rhythm<!----></a
+                    >
+                </h2>
+                <h2 data-v-03eff7cc="" id="simplicity" class="prose-h2">
+                    <a
+                            data-v-03eff7cc=""
+                            aria-current="page"
+                            href="/mj-geometry-composition#simplicity"
+                            class="router-link-active router-link-exact-active"
+                    >Simplicity
+                        <!----></a
+                    >
+                </h2>
+                <h2 data-v-03eff7cc="" id="division-of-the-screen" class="prose-h2">
+                    <a
+                            data-v-03eff7cc=""
+                            aria-current="page"
+                            href="/mj-geometry-composition#division-of-the-screen"
+                            class="router-link-active router-link-exact-active"
+                    >Division of the Screen<!----></a
+                    >
+                </h2>
+                <h2 data-v-03eff7cc="" id="leading-lines" class="prose-h2">
+                    <a
+                            data-v-03eff7cc=""
+                            aria-current="page"
+                            href="/mj-geometry-composition#leading-lines"
+                            class="router-link-active router-link-exact-active"
+                    >Leading Lines<!----></a
+                    >
+                </h2>
+                <h2 data-v-03eff7cc="" id="frame-within-a-frame" class="prose-h2">
+                    <a
+                            data-v-03eff7cc=""
+                            aria-current="page"
+                            href="/mj-geometry-composition#frame-within-a-frame"
+                            class="router-link-active router-link-exact-active"
+                    >Frame within a Frame<!----></a
+                    >
+                </h2>
+                <h2
+                        data-v-03eff7cc=""
+                        id="diagonal-and-triangular-composition"
+                        class="prose-h2"
+                >
+                    <a
+                            data-v-03eff7cc=""
+                            aria-current="page"
+                            href="/mj-geometry-composition#diagonal-and-triangular-composition"
+                            class="router-link-active router-link-exact-active"
+                    >Diagonal and Triangular Composition<!----></a
+                    >
+                </h2>
+            </div>
+        </div>
+        <aside class="flex max-w-[280px] flex-col">
+            <div class="container-card bg-white p-6 container-card max-w-[280px]">
+                <div class="flex">
+                    <div class="flex">
+                        <a
+                                href="/about"
+                                class="relative z-20 mb-4 h-16 w-16 cursor-pointer overflow-hidden rounded-full border-2 border-solid border-white"
+                        ><img
+                                src="/_vercel/image?url=/avatar.jpg&amp;w=320&amp;q=100"
+                                width="300"
+                                loading="lazy"
+                                data-nuxt-img=""
+                                class="absolute bottom-0 right-0 h-16 w-16 overflow-clip object-cover"
+                                srcset="
+                /_vercel/image?url=/avatar.jpg&amp;w=320&amp;q=100 1x,
+                /_vercel/image?url=/avatar.jpg&amp;w=640&amp;q=100 2x
+              "
+                        /></a>
+                    </div>
+                    <div class="flex flex-wrap justify-center text-center font-extrabold">
+                        <h4 class="ml-2 mt-0 flex flex-col p-0 text-left text-lg font-bold">
+                            <a
+                                    href="/about"
+                                    class="cursor-pointer text-zinc-600 hover:text-orange-400 hover:underline dark:text-zinc-400"
+                            >
+                                Lucas Cao </a
+                            ><a
+                                href="/about"
+                                class="cursor-pointer text-sm text-zinc-400 hover:text-orange-400 hover:underline dark:text-zinc-400"
+                        >
+                            @hylarucoder
+                        </a>
+                        </h4>
+                    </div>
+                </div>
+                <div class="space-x-2 text-left text-zinc-600">
+                    <a
+                            class="twitter-share-button hover:text-orange-400"
+                            target="_blank"
+                            href="https://twitter.com/simpleaiart"
+                    ><span class="i-fa6-brands-twitter h-[20px] w-[20px]"></span></a
+                    ><a
+                        class="twitter-share-button hover:text-orange-400"
+                        target="_blank"
+                        href="https://youtube.com/@simpleaiart"
+                ><span class="i-fa6-brands-youtube h-[20px] w-[20px]"></span></a
+                ><a
+                        class="twitter-share-button hover:text-orange-400"
+                        target="_blank"
+                        href="https://github.com/hylarucoder"
+                ><span class="i-fa6-brands-github h-[20px] w-[20px]"></span></a
+                ><a
+                        class="twitter-share-button hover:text-orange-400"
+                        target="_blank"
+                        href="https://github.com/hylarucoder"
+                ><span class="i-fa6-brands-instagram h-[20px] w-[20px]"></span
+                ></a>
+                </div>
+            </div>
+            <div class="max-w-[280px]">
+                <div
+                        class="mt-6 hidden bg-white py-4 sm:col-span-3 sm:block container-card"
+                >
+                    <div class="sticky top-20 w-full pl-4">
+                        <h2
+                                class="my-0 text-xl font-bold text-zinc-800 dark:text-zinc-400 lg:pt-0"
+                        >
+                            Content
+                        </h2>
+                        <nav class="mt-2 border-l-2 pl-4">
+                            <ul class="pl-0">
+                                <li class="" style="list-style-type: none; line-height: 1.2em">
+                                    <a
+                                            role="button"
+                                            class="mb-2 block break-keep text-[14px] font-semibold text-zinc-500 transition-colors duration-75 hover:text-orange-500 hover:underline dark:hover:text-zinc-900"
+                                            href="#foreword"
+                                    >Foreword</a
+                                    >
+                                    <ul class="pl-0"></ul>
+                                </li>
+                                <li class="" style="list-style-type: none; line-height: 1.2em">
+                                    <a
+                                            role="button"
+                                            class="mb-2 block break-keep text-[14px] font-semibold text-zinc-500 transition-colors duration-75 hover:text-orange-500 hover:underline dark:hover:text-zinc-900"
+                                            href="#what-is-geometry-composition"
+                                    >What is Geometry Composition?</a
+                                    >
+                                    <ul class="pl-0"></ul>
+                                </li>
+                                <li class="" style="list-style-type: none; line-height: 1.2em">
+                                    <a
+                                            role="button"
+                                            class="mb-2 block break-keep text-[14px] font-semibold text-zinc-500 transition-colors duration-75 hover:text-orange-500 hover:underline dark:hover:text-zinc-900"
+                                            href="#geometry-composition-in-midjourney"
+                                    >Geometry Composition in Midjourney</a
+                                    >
+                                    <ul class="pl-0"></ul>
+                                </li>
+                                <li class="" style="list-style-type: none; line-height: 1.2em">
+                                    <a
+                                            role="button"
+                                            class="mb-2 block break-keep text-[14px] font-semibold text-zinc-500 transition-colors duration-75 hover:text-orange-500 hover:underline dark:hover:text-zinc-900"
+                                            href="#diagonal-composition"
+                                    >Diagonal composition</a
+                                    >
+                                    <ul class="pl-0"></ul>
+                                </li>
+                                <li class="" style="list-style-type: none; line-height: 1.2em">
+                                    <a
+                                            role="button"
+                                            class="mb-2 block break-keep text-[14px] font-semibold text-zinc-500 transition-colors duration-75 hover:text-orange-500 hover:underline dark:hover:text-zinc-900"
+                                            href="#lines-and-shapes"
+                                    >Lines and Shapes</a
+                                    >
+                                    <ul class="pl-0"></ul>
+                                </li>
+                                <li class="" style="list-style-type: none; line-height: 1.2em">
+                                    <a
+                                            role="button"
+                                            class="mb-2 block break-keep text-[14px] font-semibold text-zinc-500 transition-colors duration-75 hover:text-orange-500 hover:underline dark:hover:text-zinc-900"
+                                            href="#symmetry-and-balance"
+                                    >Symmetry and Balance</a
+                                    >
+                                    <ul class="pl-0"></ul>
+                                </li>
+                                <li class="" style="list-style-type: none; line-height: 1.2em">
+                                    <a
+                                            role="button"
+                                            class="mb-2 block break-keep text-[14px] font-semibold text-zinc-500 transition-colors duration-75 hover:text-orange-500 hover:underline dark:hover:text-zinc-900"
+                                            href="#repetition-and-rhythm"
+                                    >Repetition and Rhythm</a
+                                    >
+                                    <ul class="pl-0"></ul>
+                                </li>
+                                <li class="" style="list-style-type: none; line-height: 1.2em">
+                                    <a
+                                            role="button"
+                                            class="mb-2 block break-keep text-[14px] font-semibold text-zinc-500 transition-colors duration-75 hover:text-orange-500 hover:underline dark:hover:text-zinc-900"
+                                            href="#simplicity"
+                                    >Simplicity</a
+                                    >
+                                    <ul class="pl-0"></ul>
+                                </li>
+                                <li class="" style="list-style-type: none; line-height: 1.2em">
+                                    <a
+                                            role="button"
+                                            class="mb-2 block break-keep text-[14px] font-semibold text-zinc-500 transition-colors duration-75 hover:text-orange-500 hover:underline dark:hover:text-zinc-900"
+                                            href="#division-of-the-screen"
+                                    >Division of the Screen</a
+                                    >
+                                    <ul class="pl-0"></ul>
+                                </li>
+                                <li class="" style="list-style-type: none; line-height: 1.2em">
+                                    <a
+                                            role="button"
+                                            class="mb-2 block break-keep text-[14px] font-semibold text-zinc-500 transition-colors duration-75 hover:text-orange-500 hover:underline dark:hover:text-zinc-900"
+                                            href="#leading-lines"
+                                    >Leading Lines</a
+                                    >
+                                    <ul class="pl-0"></ul>
+                                </li>
+                                <li class="" style="list-style-type: none; line-height: 1.2em">
+                                    <a
+                                            role="button"
+                                            class="mb-2 block break-keep text-[14px] font-semibold text-zinc-500 transition-colors duration-75 hover:text-orange-500 hover:underline dark:hover:text-zinc-900"
+                                            href="#frame-within-a-frame"
+                                    >Frame within a Frame</a
+                                    >
+                                    <ul class="pl-0"></ul>
+                                </li>
+                                <li class="" style="list-style-type: none; line-height: 1.2em">
+                                    <a
+                                            role="button"
+                                            class="mb-2 block break-keep text-[14px] font-semibold text-zinc-500 transition-colors duration-75 hover:text-orange-500 hover:underline dark:hover:text-zinc-900"
+                                            href="#diagonal-and-triangular-composition"
+                                    >Diagonal and Triangular Composition</a
+                                    >
+                                    <ul class="pl-0"></ul>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <div class="container-card mt-6 flex flex-col">
+                    <h2
+                            class="prose prose-2xl mx-4 mt-5 flex items-center p-0 text-xl font-bold uppercase dark:text-zinc-400"
+                    >
+                        READ NEXT
+                    </h2>
+                    <div class="mb-4 mt-4 flex-col space-y-2 px-4">
+                        <a class="my-2 flex cursor-pointer w-full"
+                        ><img
+                                src="https://image.simpleaiart.com/content/images/2023/09/007.webp"
+                                width="50"
+                                height="50"
+                                loading="lazy"
+                                data-nuxt-img=""
+                        />
+                            <div>
+                                <h2
+                                        class="line-clamp-3 px-2 text-xs text-zinc-600 hover:text-zinc-800"
+                                >
+                                    10 Essential Plugins You Must Have: A Review of A1111 WebUI
+                                    Extensions
+                                </h2>
+                            </div>
+                        </a
+                        ><a class="my-2 flex cursor-pointer w-full"
+                    ><img
+                            src="https://image.simpleaiart.com/size/2023/09/w1280/224ab4a355add473fbeb95a639c72530.webp"
+                            width="50"
+                            height="50"
+                            loading="lazy"
+                            data-nuxt-img=""
+                    />
+                        <div>
+                            <h2
+                                    class="line-clamp-3 px-2 text-xs text-zinc-600 hover:text-zinc-800"
+                            >
+                                Guide: Workflow for Creating Animations using
+                                animatediff-cli-prompt-travel Step-by-Step
+                            </h2>
+                        </div>
+                    </a>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </article>
+{% endblock %}

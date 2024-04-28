@@ -1,0 +1,35 @@
+<div class="m-0 flex transform cursor-pointer overflow-clip rounded p-0 shadow transition-all duration-300 ease-in-out hover:shadow-2xl">
+    <a href="{{ post.href }}" class="relative w-full"><img
+            src="https://image.simpleaiart.com/size/2023/09/w1280/224ab4a355add473fbeb95a639c72530.webp"
+            width="600" height="400" loading="lazy"
+            data-nuxt-img=""
+            class="h-[150px] w-full rounded-t object-cover transition-all duration-300 ease-in-out hover:scale-105 sm:h-[200px] sm:w-full"
+    >
+        <div class="w-full flex-1 rounded-b bg-opacity-60 px-4 py-4 pt-5 text-zinc-800 backdrop-blur-md dark:text-zinc-400">
+            <h2 class="line-clamp-2 text-lg font-bold leading-6 text-zinc-900 hover:text-orange-400 dark:text-zinc-400 text-opacity-70">
+                {{ post.title }}
+            </h2>
+            <span class="relative z-20 mt-2 flex items-center justify-between text-zinc-700 dark:text-zinc-400 text-opacity-70">
+                <span class="inline-flex items-center space-x-3 dark:text-zinc-400">
+                <span class="inline-flex items-center space-x-1 text-[12px] hover:text-orange-400 md:text-sm">
+                    <span class="i-mdi-calendar"></span>
+                    <span class="">{{ post.date }}</span>
+                </span>
+                    <span class="inline-flex items-center space-x-1 text-[10px] font-medium hover:text-orange-400 md:text-sm">
+                        <span class="i-mdi-book-outline dark:text-zinc-400"></span>
+                        <span class="">{{ post.category }}</span>
+                    </span>
+                </span>
+                <span class="inline-flex items-center space-x-3 text-[12px] font-medium md:text-xs">
+                    <span class="inline-flex items-center space-x-1 hover:text-orange-400">
+                        <span class="i-mdi-cursor-default-click-outline"></span>
+                        <span class="hover:text-orange-400">{{ post.views }}</span>
+                    </span>
+                    <span class="inline-flex items-center space-x-1 hover:text-orange-400">
+                        <span class="i-mdi-clock-outline"></span>
+                        <span class="hover:text-orange-400"> {{ post.read_min }}</span>
+                    </span>
+                </span>
+            </span>
+        </div>
+    </a></div>

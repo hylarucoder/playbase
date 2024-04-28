@@ -7,11 +7,14 @@ x-playbase-common:
     - .:/opt/playbase
   environment:
     &playbase-common-env
-    DJANGO_SECRET_KEY: @ZF8dr8z@L*asd3oR?R/pe1}|l12enem(ppFV=U<!F@lF-k9wE
+    DJANGO_SECRET_KEY: justtesting
+  depends_on:
+    - postgres
+    - redis
 
 services:
   postgres:
-    image: postgres:13
+    image: postgres:16
     restart: always
     environment:
       - DATABASE_HOST=127.0.0.1
@@ -36,33 +39,27 @@ services:
       retries: 50
     restart: always
 
-  elasticsearch:
-    image: elasticsearch:local
-    ports:
-      - '9200:9200'
-      - '9100:9100'
-
   playbase-web:
     <<: *playbase-common
-    command: ["playbase-cli", "webserver"]
+    command: djcli runserver 0.0.0.0:8000
     ports:
       - "8000:8000"
 
   playbase-toolbox:
     <<: *playbase-common
-    command: ["playbase-cli"]
+    command: [ "djcli" ]
 
-  playbase-worker:
-    <<: *playbase-common
-    command: ["playbase-cli", "worker"]
-
-  playbase-beat:
-    <<: *playbase-common
-    command: ["playbase-cli", "beat"]
-
-  playbase-flower:
-    <<: *playbase-common
-    command: ["playbase-cli", "flower"]
+#  playbase-worker:
+#    <<: *playbase-common
+#    command: [ "djcli", "worker" ]
+#
+#  playbase-beat:
+#    <<: *playbase-common
+#    command: [ "djcli", "beat" ]
+#
+#  playbase-flower:
+#    <<: *playbase-common
+#    command: [ "djcli", "flower" ]
 
 volumes:
   postgres_data_dev: { }

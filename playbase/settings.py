@@ -1,12 +1,24 @@
-import datetime
 import os
+import pathlib
+import socket
 
-from playbase.pre_settings import get_settings
+from pydantic_settings import BaseSettings
 
-settings = get_settings()
+APP_PATH = pathlib.Path(__file__).parent
+ROOT_PATH = APP_PATH.parent.absolute()
 
-ROOT_PATH = settings.ROOT_PATH
-playbase_DIR = os.path.join(ROOT_PATH, "playbase")
+
+class Settings(BaseSettings):
+    DEBUG: bool = True
+    SECRET_KEY: str = "changethisbeforedeployproduction"
+    TIME_ZONE: str = "Asia/Shanghai"
+    DATABASE_URL: str = (
+        "postgresql://rocketbase:rocketbase%26123@postgres:5432/rocketbase"
+    )
+    REDIS_CACHE_URI: str = "redis://redis:6379/1"
+
+
+settings = Settings()
 
 SECRET_KEY = settings.SECRET_KEY
 
@@ -19,28 +31,28 @@ DJANGO_APPS = (
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
-    "django.contrib.staticfiles",
-    "django.contrib.gis",
+    # "django.contrib.staticfiles",
     "django.contrib.postgres",
     "django.contrib.humanize",
     "django.contrib.admin",
 )
+
 THIRD_PARTY_APPS = (
-    "rest_framework",
-    "rest_framework_jwt",
-    "guardian",
-    "mptt",
-    "django_filters",
+    "django_htmx",
+    'django_components',
+    'django_components.safer_staticfiles'
 )
 
-LOCAL_APPS = ("playbase",)
+LOCAL_APPS = (
+    "playbase",
+)
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 MIDDLEWARE = [
+    "django_htmx.middleware.HtmxMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
-    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -64,34 +76,48 @@ LANGUAGE_CODE = "zh-CN"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "APP_DIRS": True,
+        # "DIRS": [
+        #     os.path.join(APP_DIR, "templates"),
+        #     # os.path.join(BASE_DIR, "templates"),
+        # ],
         "OPTIONS": {
-            "debug": DEBUG,
             "context_processors": [
                 "django.template.context_processors.debug",
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
-                "django.template.context_processors.i18n",
-                "django.template.context_processors.media",
-                "django.template.context_processors.static",
-                "django.template.context_processors.tz",
                 "django.contrib.messages.context_processors.messages",
+            ],
+            "loaders": [
+                (
+                    "django.template.loaders.cached.Loader",
+                    [
+                        "django.template.loaders.filesystem.Loader",
+                        "django.template.loaders.app_directories.Loader",
+                        "django_components.template_loader.Loader",
+                    ],
+                )
+            ],
+            "builtins": [
+                "django_components.templatetags.component_tags",
             ],
         },
     },
 ]
 
-STATIC_ROOT = os.path.join(ROOT_PATH, "../static")
+STATIC_ROOT = ROOT_PATH / "static"
 STATIC_URL = "/static/"
 
-STATICFILES_DIRS = (os.path.join(playbase_DIR, "static"),)
+STATICFILES_DIRS = (
+    APP_PATH / "static",
+    ROOT_PATH / "components",
+)
 
 STATICFILES_FINDERS = (
     "django.contrib.staticfiles.finders.FileSystemFinder",
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
 )
 
-MEDIA_ROOT = (f"{ROOT_PATH}/media",)
+MEDIA_ROOT = ROOT_PATH / "media"
 MEDIA_URL = "/media/"
 
 ROOT_URLCONF = "playbase.apps.urls"
@@ -115,14 +141,9 @@ AUTH_PASSWORD_VALIDATORS = [
 
 AUTHENTICATION_BACKENDS = (
     "django.contrib.auth.backends.ModelBackend",
-    "guardian.backends.ObjectPermissionBackend",
 )
 
 ADMIN_URL = "admin"
-
-GRAPPELLI_ADMIN_TITLE = "Micheal Gardner的编程小屋"
-
-# GRAPPELLI_INDEX_DASHBOARD = "playbase.yaadmin.dashboard.CustomIndexDashboard"
 
 CORS_ORIGIN_ALLOW_ALL = True
 
@@ -131,17 +152,6 @@ INTERNAL_IPS = [
     "10.0.2.2",
 ]
 
-REST_FRAMEWORK = {
-    "DEFAULT_RENDERER_CLASSES": ("rest_framework.renderers.JSONRenderer",),
-    "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
-    "DEFAULT_AUTHENTICATION_CLASSES": (
-        "rest_framework_jwt.authentication.JSONWebTokenAuthentication",
-        "rest_framework.authentication.BasicAuthentication",
-    ),
-}
-
-# DEBUG
-# ------------------------------------------------------------------------------
 if DEBUG:
     MIDDLEWARE += ["debug_toolbar.middleware.DebugToolbarMiddleware"]
     INSTALLED_APPS += ("debug_toolbar",)
@@ -156,21 +166,17 @@ if DEBUG:
 
 CACHES = {
     "default": {
-        "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": settings.REDIS_URI,
-        "OPTIONS": {
-            "CLIENT_CLASS": "django_redis.client.DefaultClient",
-        },
+        "BACKEND": "django.core.cache.backends.dummy.DummyCache",
+        "LOCATION": settings.REDIS_CACHE_URI,
     }
 }
+
 SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 SESSION_CACHE_ALIAS = "default"
 
-# import socket
-
-# # tricks to have debug toolbar when developing with docker
-# ip = socket.gethostbyname(socket.gethostname())
-# INTERNAL_IPS += [ip[:-1] + "1"]
+# tricks to have debug toolbar when developing with docker
+ip = socket.gethostbyname(socket.gethostname())
+INTERNAL_IPS += [ip[:-1] + "1"]
 
 DATABASES = {
     "default": {
@@ -178,30 +184,9 @@ DATABASES = {
         "NAME": "playbase",
         "USER": "playbase",
         "PASSWORD": "playbase123",
-        "HOST": "localhost",
+        "HOST": "postgres",
         "PORT": 5432,
     }
-}
-
-JWT_AUTH = {
-    "JWT_ENCODE_HANDLER": "rest_framework_jwt.utils.jwt_encode_handler",
-    "JWT_DECODE_HANDLER": "rest_framework_jwt.utils.jwt_decode_handler",
-    "JWT_PAYLOAD_HANDLER": "rest_framework_jwt.utils.jwt_payload_handler",
-    "JWT_PAYLOAD_GET_USER_ID_HANDLER": "rest_framework_jwt.utils.jwt_get_user_id_from_payload_handler",
-    "JWT_RESPONSE_PAYLOAD_HANDLER": "rest_framework_jwt.utils.jwt_response_payload_handler",
-    "JWT_SECRET_KEY": settings.SECRET_KEY,
-    "JWT_PUBLIC_KEY": None,
-    "JWT_PRIVATE_KEY": None,
-    "JWT_ALGORITHM": "HS256",
-    "JWT_VERIFY": True,
-    "JWT_VERIFY_EXPIRATION": True,
-    "JWT_LEEWAY": 0,
-    "JWT_EXPIRATION_DELTA": datetime.timedelta(seconds=300),
-    "JWT_AUDIENCE": None,
-    "JWT_ISSUER": None,
-    "JWT_ALLOW_REFRESH": True,
-    "JWT_REFRESH_EXPIRATION_DELTA": datetime.timedelta(days=7),
-    "JWT_AUTH_HEADER_PREFIX": "JWT",
 }
 
 # Guardian的副作用, 直接去掉 AnonymousUser
