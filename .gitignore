@@ -95,3 +95,4 @@ celerybeat-schedule.db
 celerybeat.pid
 .volume
 node_modules/
+static/

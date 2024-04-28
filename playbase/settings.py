@@ -166,7 +166,7 @@ if DEBUG:
 
 CACHES = {
     "default": {
-        "BACKEND": "django.core.cache.backends.redis.RedisCache",
+        "BACKEND": "django.core.cache.backends.dummy.DummyCache",
         "LOCATION": settings.REDIS_CACHE_URI,
     }
 }

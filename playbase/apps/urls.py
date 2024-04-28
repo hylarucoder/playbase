@@ -6,6 +6,10 @@ from django.urls import re_path, path
 from django.views import defaults as default_views
 from django.views.generic import RedirectView
 
+from components.greeting import Greeting
+from components.nested.vcalendar.vcalendar import CalendarNested
+from components.todo.todo import Calendar
+from components.vcalendar.vcalendar import CalendarRelative
 from playbase.apps.home.views import home_page
 from playbase.apps.user.urls import urlpatterns as user_urlpatterns
 
@@ -17,6 +21,10 @@ urlpatterns = (
             path("api/", include(user_urlpatterns)),
             path("favicon.ico", favicon_view),
             path(settings.ADMIN_URL, admin.site.urls),
+            path("greeting/", Greeting.as_view(), name="greeting"),
+            path("calendar/", Calendar.as_view(), name="calendar"),
+            path("calendar-relative/", CalendarRelative.as_view(), name="calendar-relative"),
+            path("calendar-nested/", CalendarNested.as_view(), name="calendar-nested"),
         ]
         + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
         + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

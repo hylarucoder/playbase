@@ -14,7 +14,7 @@
     {% if title %}
         <title>{{ title }}</title>
     {% else %}
-        <title>Echo</title>
+        <title> Playbase </title>
     {% endif %}
     <meta name="htmx-config" content='{"historyCacheSize": 15}'/>
     <link rel="stylesheet" href="{% static 'css/mvp.css' %}"/>
@@ -31,7 +31,7 @@
 <body
         hx-ext="debug, event-header"
         hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
-        class="min-h-screen"
+        class="min-h-screen antialiased bg-page text-default tracking-tight"
 >
 
 {% block body %}{% endblock %}
