@@ -9,7 +9,7 @@ ROOT_PATH = APP_PATH.parent.absolute()
 
 
 class Settings(BaseSettings):
-    DEBUG: bool = False
+    DEBUG: bool = True
     SECRET_KEY: str = "changethisbeforedeployproduction"
     TIME_ZONE: str = "Asia/Shanghai"
     DATABASE_URL: str = (
@@ -31,16 +31,21 @@ DJANGO_APPS = (
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
-    "django.contrib.staticfiles",
+    # "django.contrib.staticfiles",
     "django.contrib.postgres",
     "django.contrib.humanize",
     "django.contrib.admin",
 )
 
 THIRD_PARTY_APPS = (
+    "django_htmx",
+    'django_components',
+    'django_components.safer_staticfiles'
 )
 
-LOCAL_APPS = ("playbase",)
+LOCAL_APPS = (
+    "playbase",
+)
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
@@ -104,6 +109,7 @@ STATIC_URL = "/static/"
 
 STATICFILES_DIRS = (
     APP_PATH / "static",
+    ROOT_PATH / "components",
 )
 
 STATICFILES_FINDERS = (

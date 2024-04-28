@@ -41,7 +41,7 @@ format: ## publish package to pypi
 	ruff format .
 
 collectstatic:
-	docker-compese run --rm playbase-toolbox bash -c "djcli collectstatic"
+	docker-compose run --rm playbase-toolbox bash -c "djcli collectstatic"
 
 shell_plus:
 	docker-compose run --rm playbase-toolbox bash -c "djcli shell_plus"
